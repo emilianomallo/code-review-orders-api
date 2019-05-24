@@ -13,5 +13,9 @@ class OrderController extends Controller
         return Order::all();
     }
 
+    public function show($id) {
+        return Order::findOrFail($id);
+    }
+
 }
 
