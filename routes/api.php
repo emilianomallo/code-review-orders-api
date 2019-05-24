@@ -27,3 +27,4 @@ Route::get('health', 'HealthCheckController@health');
 
 Route::get('orders', 'OrderController@index');
 Route::get('orders/{id}', 'OrderController@show');
+Route::post('orders/create', 'OrderController@store');
