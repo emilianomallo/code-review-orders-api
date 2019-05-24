@@ -83,5 +83,12 @@ class OrderController extends Controller
         return [];
     }
 
+    public function delete($id) {
+        $order = Order::find($id);
+        $order->delete($id);
+    
+        return response()->json(null, 204);
+    }
+
 }
 
