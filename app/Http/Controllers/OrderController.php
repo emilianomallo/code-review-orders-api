@@ -59,5 +59,29 @@ class OrderController extends Controller
         return response()->json($response, Response::HTTP_CREATED);
     }
 
+    public function editOrder(Request $request, $order_id) {
+        try {
+            $order_from_db = Order::find($order_id);
+
+            if(is_null($order_from_db) == false) {
+                // Update all orders fields
+                foreach($request->all() as $k => $v) {
+                    $order_from_db->$k = $v;
+                    $order_from_db->save();
+                }
+        
+                $updatedOrder = Order::find($id);
+                return response()->json($updatedOrder, 201);
+            }
+
+            return response()->json("", 200);
+
+        } catch (\Exception $e) {
+            return response()->json(NULL, Response::HTTP_GATEWAY_TIMEOUT);
+        }
+
+        return [];
+    }
+
 }
 
